@@ -4,11 +4,11 @@ Name: Tobi Goodness Popoola
 Class: Comprehensive exam artifact
 
 # Features / Overview
-A compiler that detects Static Control Parts (SCoPs) in a C program and generates Sparse Polyhedral Model
+A compiler that detects Static Control Parts (SCoPs) in a C program and generates Polyhedral DataFlow Graph IR.
 
 1. Parses C program 
-2. Generates the Iteration Domain component of Sparse Polyhedral Framework.
-3. Generates the Execution Schedule component of the Sparse Polyhedral Framework.
+2. Generates the Iteration Domain component of Polyhedral DataFlow Graph IR.
+3. Generates the Execution Schedule component of the Polyhedral DataFlow Graph IR.
 
 
 ### Documentation
