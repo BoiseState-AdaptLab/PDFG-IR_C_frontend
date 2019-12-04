@@ -35,7 +35,7 @@ Follow installation information [here](https://clang.llvm.org/get_started.html)
 ### Build / Install
 
 ```sh
-$ git clone https://github.com/tpops/sparse_c_frontend.git/
+$ git clone https://github.com/BoiseState-AdaptLab/PDFG-IR_C_frontend.git
 $ mkdir build
 $ cd build
 ```
