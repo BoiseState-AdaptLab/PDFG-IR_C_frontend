@@ -1,4 +1,4 @@
-## SPARSE POLYHEDRAL MODEL FRONT END COMPILER
+## POLYHEDRAL DATA FLOW GRAPH IR (PDFG IR) FRONT END COMPILER
 
 Name: Tobi Goodness Popoola
 Class: Comprehensive exam artifact
