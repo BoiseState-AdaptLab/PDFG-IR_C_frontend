@@ -1,7 +1,6 @@
 ## POLYHEDRAL DATA FLOW GRAPH IR (PDFG IR) FRONT END COMPILER
 
-Name: Tobi Goodness Popoola
-Class: Comprehensive exam artifact
+Author: Tobi Goodness Popoola
 
 # Features / Overview
 A compiler that detects Static Control Parts (SCoPs) in a C program and generates Polyhedral DataFlow Graph IR.
