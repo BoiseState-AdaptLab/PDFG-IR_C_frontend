@@ -15,13 +15,22 @@ if (NOT EXISTS ${LLVM_ROOT}/include/llvm)
 	message (FATAL_ERROR "LLVM Root directory does not have INCLUDE ")
 endif()
 
-if ( NOT EXISTS ${LLVM_ROOT}/tools/clang/include/clang)
+if ( NOT EXISTS ${LLVM_ROOT}/tools/clang/include/clang 
+		AND NOT EXISTS ${LLVM_ROOT}/clang/include/clang)
+
   message (FATAL_ERROR "LLVM Root directory does not have clang")
+else(TRUE)
+	if(EXISTS ${LLVM_ROOT}/clang/include/clang)
+		set (CLANG_SRC "${LLVM_ROOT}/clang")
+	elseif(	EXISTS ${LLVM_ROOT}/tools/clang/include/clang)
+		set(CLANG_SRC "${LLVM_ROOT}/tools/clang")
+	endif()	
+  
 endif()
 
 
 list ( APPEND CMAKE_PREFIX_PATH "${LLVM_ROOT}/share/llvm/cmake")
-list ( APPEND CMAKE_PREFIX_PATH "${LLVM_ROOT}/tools/clang/cmake")
+list ( APPEND CMAKE_PREFIX_PATH "${CLANG_SRC}/cmake")
 message (STATUS ${CMAKE_PREFIX_PATH})
 
 find_package (LLVM REQUIRED CONFIG)
@@ -30,7 +39,7 @@ list (APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_DIR}")
 
 find_package(Clang REQUIRED)
 
-list (APPEND CMAKE_MODULE_PATH "${LLVM_ROOT}/tools/clang/cmake/modules")
+list (APPEND CMAKE_MODULE_PATH "${CLANG_SRC}/cmake/modules")
 
 INCLUDE (HandleLLVMOptions) #load additional configuration
 
