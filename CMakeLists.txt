@@ -4,10 +4,15 @@ set (APP_NAME "pdfg-c")
 #set(CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions -fPIC -DPIC -Xpreprocessor -ftree-vectorize -funroll-all-loops ")
 
-set (LLVM_ROOT /home/tpopoola/llvm/llvm_git CACHE PATH /home/tpopoola/llvm/llvm_build)
+option (LLVM_SRC "LLVM SRC Directory")
+option (LLVM_BUILD "LLVM Build Directory")
+
+set (LLVM_MAIN_SRC_DIR ${LLVM_SRC})
+set(LLVM_ROOT ${LLVM_SRC} CACHE PATH ${LLVM_BUILD})
 
 #llvm install sanity checkif(not exists ${LLVM_ROOT} / include / llvm)
 if (NOT EXISTS ${LLVM_ROOT}/include/llvm)
+	message (FATAL_ERROR "LLVM Root directory does not have INCLUDE ")
 endif()
 
 if ( NOT EXISTS ${LLVM_ROOT}/tools/clang/include/clang)
@@ -17,7 +22,7 @@ endif()
 
 list ( APPEND CMAKE_PREFIX_PATH "${LLVM_ROOT}/share/llvm/cmake")
 list ( APPEND CMAKE_PREFIX_PATH "${LLVM_ROOT}/tools/clang/cmake")
-
+message (STATUS ${CMAKE_PREFIX_PATH})
 
 find_package (LLVM REQUIRED CONFIG)
 
@@ -236,10 +241,13 @@ if (TESTING)
     add_executable(pdfg-cTest ${UNIT_TESTS} ${GTEST_FILES} ${PDFG-C_FILES})
 endif()
 
+message(STATUS "----${CMAKE_MODULE_PATH}")
+include(AddLLVM)
 
-include (AddLLVM)
+message(STATUS "---> 2-> ${LLVM_MAIN_SRC_DIR}")
 include(AddClang)
 
+message (STATUS "LLVM ROOT= '${LLVM_DEFINITIONS}'")
 link_directories(lib)
 add_definitions(${LLVM_DEFINITIONS})
 include_directories(${LLVM_INCLUDE_DIRS})

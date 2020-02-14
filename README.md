@@ -40,16 +40,24 @@ $ mkdir build
 $ cd build
 ```
 
-You can specify documentation option with the -DBUILD_DOC=ON and the llvm/clang route -DLLVM_ROOT=/clang-llvm-installation-folder
 
 ```sh
-$ cmake -DLLVM_ROOT=~/ -DBUILD_DOC=ON ../path-to-source/
+$ cmake  -DBUILD_DOC=[ON|OFF] -DLLVM_BUILD=/path/to/llvm/build -DLLVM_SRC=path/to/llvm/src ../PDFG-IR_C_frontend
+
 ```
+
+#### CMAKE options
+
+BUILD\_DOC: ON|OFF builds documentation using deoxygen
+
+LLVM\_BUILD: path to llvm build
+
+LLVM\_SRC: path to LLVM source. clang should be in LLVM\_SRC/tools/
 
 ### Usage
 
 ```sh
- $./build/bin/pdfg-c -h=1 /filepath -- -std=c++11
+ $./build/bin/pdfg-c -h=1 /test/c_file/path -- -std=c++11
 
 ```
 
