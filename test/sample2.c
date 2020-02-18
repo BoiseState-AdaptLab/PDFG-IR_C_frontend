@@ -1,8 +1,8 @@
-void foo() {
-  for (int i = 0; i < 8; i++) {
-    int j = i * i;
-  }
-}
+
+
+
+
+
 int main(int argc, char **argv) {
   int i;
   int A[20];

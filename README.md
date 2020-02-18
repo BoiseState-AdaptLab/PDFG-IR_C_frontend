@@ -51,12 +51,12 @@ BUILD\_DOC: ON|OFF builds documentation using deoxygen
 
 LLVM\_BUILD: path to llvm build
 
-LLVM\_SRC: path to LLVM source. clang should be in LLVM\_SRC/tools/
+LLVM\_SRC: path to LLVM source
 
 ### Usage
 
 ```sh
- $./build/bin/pdfg-c -h=1 /test/c_file/path -- -std=c++11
+ $./build/bin/pdfg-c /test/c_file/path -- -std=c++11
 
 ```
 

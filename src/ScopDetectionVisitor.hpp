@@ -104,7 +104,7 @@ private:
   std::string GetCleanString(const clang::SourceRange &loc) {
     std::string exprString = clang::Lexer::getSourceText(
         clang::CharSourceRange::getTokenRange(loc), Context->getSourceManager(),
-        Context->getLangOpts());
+        Context->getLangOpts()).str();
     // replace [] for ()
     std::replace(exprString.begin(), exprString.end(), '[', '(');
     std::replace(exprString.begin(), exprString.end(), ']', ')');

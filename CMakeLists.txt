@@ -9,29 +9,22 @@ option (LLVM_BUILD "LLVM Build Directory")
 
 set (LLVM_MAIN_SRC_DIR ${LLVM_SRC})
 set(LLVM_ROOT ${LLVM_SRC} CACHE PATH ${LLVM_BUILD})
-
 #llvm install sanity checkif(not exists ${LLVM_ROOT} / include / llvm)
-if (NOT EXISTS ${LLVM_ROOT}/include/llvm)
-	message (FATAL_ERROR "LLVM Root directory does not have INCLUDE ")
+if (NOT EXISTS ${LLVM_ROOT}/llvm/include/llvm)
+	message (FATAL_ERROR "LLVM Root directory does not have INCLUDE ${LLVM_ROOT} ")
 endif()
 
-if ( NOT EXISTS ${LLVM_ROOT}/tools/clang/include/clang 
-		AND NOT EXISTS ${LLVM_ROOT}/clang/include/clang)
+if (EXISTS ${LLVM_ROOT}/clang/include/clang)
 
-  message (FATAL_ERROR "LLVM Root directory does not have clang")
-else(TRUE)
-	if(EXISTS ${LLVM_ROOT}/clang/include/clang)
 		set (CLANG_SRC "${LLVM_ROOT}/clang")
-	elseif(	EXISTS ${LLVM_ROOT}/tools/clang/include/clang)
-		set(CLANG_SRC "${LLVM_ROOT}/tools/clang")
-	endif()	
+else(TRUE)
   
+  message (FATAL_ERROR "LLVM Root directory does not have clang")
 endif()
 
 
-list ( APPEND CMAKE_PREFIX_PATH "${LLVM_ROOT}/share/llvm/cmake")
+list ( APPEND CMAKE_PREFIX_PATH "${LLVM_ROOT}/llvm/cmake")
 list ( APPEND CMAKE_PREFIX_PATH "${CLANG_SRC}/cmake")
-message (STATUS ${CMAKE_PREFIX_PATH})
 
 find_package (LLVM REQUIRED CONFIG)
 
@@ -250,13 +243,10 @@ if (TESTING)
     add_executable(pdfg-cTest ${UNIT_TESTS} ${GTEST_FILES} ${PDFG-C_FILES})
 endif()
 
-message(STATUS "----${CMAKE_MODULE_PATH}")
 include(AddLLVM)
 
-message(STATUS "---> 2-> ${LLVM_MAIN_SRC_DIR}")
 include(AddClang)
 
-message (STATUS "LLVM ROOT= '${LLVM_DEFINITIONS}'")
 link_directories(lib)
 add_definitions(${LLVM_DEFINITIONS})
 include_directories(${LLVM_INCLUDE_DIRS})
