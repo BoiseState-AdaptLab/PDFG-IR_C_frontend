@@ -31,7 +31,18 @@ Follow installation information [here](https://clang.llvm.org/get_started.html)
 
 
 
+
+
 ### Build / Install
+
+Set llvm path variable
+
+
+```sh
+$ export /path/to/llvm/bin/directory:$PATH
+```
+
+
 
 ```sh
 $ git clone https://github.com/BoiseState-AdaptLab/PDFG-IR_C_frontend.git
