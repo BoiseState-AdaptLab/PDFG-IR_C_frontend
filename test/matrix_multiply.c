@@ -1,3 +1,29 @@
+/**
+BEGIN_EXPECTED
+A
+    S0: return 1;
+    S1: int i;
+    S2: int j;
+    S3: int k;
+    S4: product[i][j] = 0;
+    S5: product[i][j] += x[i][k] * y[k][j];
+B
+    S0: {[]: b != c}
+    S1: {[]}
+    S2: {[]}
+    S3: {[]}
+    S4: {[i,j]: 0 <= i < a and 0 <= j < d}
+    S5: {[i,j,k]: 0 <= i < a and 0 <= j < d 0 <= k < c}
+C
+    S0: {[]->[0,0,0,0,0,0,0,0]}
+    S1: {[]->[1,0,0,0,0,0,0,0]}
+    S2: {[]->[2,0,0,0,0,0,0,0]}
+    S3: {[]->[3,0,0,0,0,0,0,0]}
+    S4: {[i,j]->[4,i,0,j,0,0,0,0]}
+    S5: {[i,j,k]->[4,i,0,j,1,k,0]}
+END_EXPECTED
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 
