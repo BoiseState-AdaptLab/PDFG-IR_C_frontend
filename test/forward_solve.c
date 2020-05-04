@@ -21,9 +21,6 @@ C
 END_EXPECTED
  */
 
-#include <stdio.h>
-
-
 int forward_solve(int n, int l[n][n], double b[n], double x[n]) {
     int i;
     for (i = 0; i < n; i++) {
@@ -36,28 +33,6 @@ int forward_solve(int n, int l[n][n], double b[n], double x[n]) {
         for (i = j + 1; i < n; i++) {
             if (l[i][j]) x[i] -= l[i][j] * x[j];
         }
-    }
-
-    return 0;
-}
-
-int main(void) {
-    int n = 3;
-    int l[3][3] = {
-        {1, 0, 0},
-        {2, 3, 0},
-        {4, 5, 6}
-    };
-    double b[3] = {7, 8, 9};
-    double x[3];
-
-    if (forward_solve(n, l, b, x) != 0) {
-        printf("encountered error during forward solve\n");
-    }
-    printf("solution vector:\n");
-    int i;
-    for (i = 0; i < n; i++) {
-        printf("%f\n", x[i]);
     }
 
     return 0;
